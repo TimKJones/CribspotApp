@@ -22,6 +22,8 @@
 		8BB469E11810640E00F7522C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BB469DF1810640E00F7522C /* InfoPlist.strings */; };
 		8BB469E31810640E00F7522C /* cribspotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BB469E21810640E00F7522C /* cribspotTests.m */; };
 		8BE5EE961819B2FC00D2B024 /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE5EE951819B2FC00D2B024 /* MapView.m */; };
+		8BE5EE991819B56C00D2B024 /* CollegeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE5EE981819B56C00D2B024 /* CollegeCell.m */; };
+		8BE5EE9B1819B58A00D2B024 /* CollegeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BE5EE9A1819B58A00D2B024 /* CollegeCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,9 @@
 		8BB469E21810640E00F7522C /* cribspotTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = cribspotTests.m; sourceTree = "<group>"; };
 		8BE5EE941819B2FC00D2B024 /* MapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapView.h; sourceTree = "<group>"; };
 		8BE5EE951819B2FC00D2B024 /* MapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapView.m; sourceTree = "<group>"; };
+		8BE5EE971819B56C00D2B024 /* CollegeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollegeCell.h; sourceTree = "<group>"; };
+		8BE5EE981819B56C00D2B024 /* CollegeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollegeCell.m; sourceTree = "<group>"; };
+		8BE5EE9A1819B58A00D2B024 /* CollegeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollegeCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +126,9 @@
 				8BE5EE951819B2FC00D2B024 /* MapView.m */,
 				8BB469CC1810640E00F7522C /* ViewController.h */,
 				8BB469CD1810640E00F7522C /* ViewController.m */,
+				8BE5EE971819B56C00D2B024 /* CollegeCell.h */,
+				8BE5EE981819B56C00D2B024 /* CollegeCell.m */,
+				8BE5EE9A1819B58A00D2B024 /* CollegeCell.xib */,
 				8BB469BB1810640E00F7522C /* Supporting Files */,
 			);
 			path = cribspot;
@@ -244,6 +252,7 @@
 				8BB469D01810640E00F7522C /* Images.xcassets in Resources */,
 				8BB469C81810640E00F7522C /* Main_iPhone.storyboard in Resources */,
 				8BB469BF1810640E00F7522C /* InfoPlist.strings in Resources */,
+				8BE5EE9B1819B58A00D2B024 /* CollegeCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,6 +273,7 @@
 			files = (
 				8BB469CE1810640E00F7522C /* ViewController.m in Sources */,
 				8BE5EE961819B2FC00D2B024 /* MapView.m in Sources */,
+				8BE5EE991819B56C00D2B024 /* CollegeCell.m in Sources */,
 				8BB469C51810640E00F7522C /* AppDelegate.m in Sources */,
 				8BB469C11810640E00F7522C /* main.m in Sources */,
 			);
