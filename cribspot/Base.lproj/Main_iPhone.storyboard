@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--View Controller - Cribspot-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
@@ -28,16 +28,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ldw-jD-qdL"/>
+                    <navigationItem key="navigationItem" title="Cribspot" id="ldw-jD-qdL">
+                        <barButtonItem key="rightBarButtonItem" title="Login" id="32z-7w-fjX"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="777" y="-477"/>
         </scene>
-        <!--View Controller-->
+        <!--Map View-->
         <scene sceneID="dZI-EW-vy7">
             <objects>
-                <viewController id="eMq-Bm-siI" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mapBaby" id="eMq-Bm-siI" customClass="MapView" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zyw-eb-Mg4"/>
                         <viewControllerLayoutGuide type="bottom" id="HfD-vO-0c4"/>
@@ -45,7 +47,7 @@
                     <view key="view" contentMode="scaleToFill" id="hi6-Cl-RF2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.5170961181" green="0.96459746850000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yCI-Lw-s6S" userLabel="First Responder" sceneMemberID="firstResponder"/>

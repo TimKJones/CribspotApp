@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "CollegeCell.h"
+#import "MapView.h"
 
 @interface ViewController (){
     NSDictionary *CollegeInfo;
@@ -52,6 +53,14 @@
 {
     return 78;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
+    MapView *lvc = [storyboard instantiateViewControllerWithIdentifier:@"mapBaby"];
+    [self.navigationController pushViewController:lvc animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 
 
 
