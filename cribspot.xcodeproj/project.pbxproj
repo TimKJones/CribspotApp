@@ -41,6 +41,7 @@
 		8BE5EEB91819C19F00D2B024 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE5EEB81819C19F00D2B024 /* OpenGLES.framework */; };
 		8BE5EEBB1819C1A600D2B024 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE5EEBA1819C1A600D2B024 /* QuartzCore.framework */; };
 		8BE5EEBD1819C1AF00D2B024 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE5EEBC1819C1AF00D2B024 /* SystemConfiguration.framework */; };
+		8BE5EED11819CD2D00D2B024 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8BE5EED01819CD2D00D2B024 /* GoogleMaps.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		8BE5EEB81819C19F00D2B024 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		8BE5EEBA1819C1A600D2B024 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8BE5EEBC1819C1AF00D2B024 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		8BE5EED01819CD2D00D2B024 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "../../Downloads/GoogleMaps-iOS-1.5.0/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 		8BB469B31810640E00F7522C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8BE5EED01819CD2D00D2B024 /* GoogleMaps.bundle */,
 				8BE5EEBC1819C1AF00D2B024 /* SystemConfiguration.framework */,
 				8BE5EEBA1819C1A600D2B024 /* QuartzCore.framework */,
 				8BE5EEB81819C19F00D2B024 /* OpenGLES.framework */,
@@ -313,6 +316,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BE5EED11819CD2D00D2B024 /* GoogleMaps.bundle in Resources */,
 				8BE5EEA01819B9C400D2B024 /* IU.png in Resources */,
 				8BB469D01810640E00F7522C /* Images.xcassets in Resources */,
 				8BB469C81810640E00F7522C /* Main_iPhone.storyboard in Resources */,
