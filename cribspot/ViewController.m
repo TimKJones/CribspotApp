@@ -9,7 +9,9 @@
 #import "ViewController.h"
 #import "CollegeCell.h"
 
-@interface ViewController ()
+@interface ViewController (){
+    NSDictionary *CollegeInfo;
+}
 
 @end
 
@@ -18,6 +20,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    CollegeInfo = [[NSDictionary alloc]initWithObjects:[NSArray arrayWithObjects:[NSArray arrayWithObjects:@"University of Michigan",@"Michigan State University",@"Indiana University",@"University of Wisconsin", nil],[NSArray arrayWithObjects:@"UM.png",@"MSU.png",@"IU.png",@"UW.png", nil], nil] forKeys:[NSArray arrayWithObjects:@"names",@"pictures",nil]];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -28,7 +31,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return [[CollegeInfo objectForKey:@"names"] count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *simpleTableIdentifier = @"CollegeCell";
@@ -39,6 +42,10 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CollegeCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
+    
+    cell.label.text =  [NSString stringWithFormat:[[CollegeInfo objectForKey:@"names"] objectAtIndex:indexPath.row]];
+    [cell.image setImage:[UIImage imageNamed:[NSString stringWithFormat:[[CollegeInfo objectForKey:@"pictures"] objectAtIndex:indexPath.row]]]];
+    
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

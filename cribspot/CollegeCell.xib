@@ -17,18 +17,18 @@
                         <rect key="frame" x="7" y="5" width="69" height="68"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gB-6i-R9v">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="8gB-6i-R9v">
                         <rect key="frame" x="93" y="12" width="207" height="52"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="image" destination="Za2-oF-KSf" id="OUq-tf-fNB"/>
-                <outlet property="label" destination="Za2-oF-KSf" id="ICf-Rt-wXH"/>
+                <outlet property="image" destination="PsP-kb-Xjs" id="IJ5-F3-QfS"/>
+                <outlet property="label" destination="8gB-6i-R9v" id="fmK-bY-bKx"/>
             </connections>
         </tableViewCell>
     </objects>

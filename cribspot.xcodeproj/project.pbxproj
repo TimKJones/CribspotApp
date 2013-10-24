@@ -24,6 +24,10 @@
 		8BE5EE961819B2FC00D2B024 /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE5EE951819B2FC00D2B024 /* MapView.m */; };
 		8BE5EE991819B56C00D2B024 /* CollegeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE5EE981819B56C00D2B024 /* CollegeCell.m */; };
 		8BE5EE9B1819B58A00D2B024 /* CollegeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BE5EE9A1819B58A00D2B024 /* CollegeCell.xib */; };
+		8BE5EEA01819B9C400D2B024 /* IU.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE5EE9C1819B9C400D2B024 /* IU.png */; };
+		8BE5EEA11819B9C400D2B024 /* MSU.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE5EE9D1819B9C400D2B024 /* MSU.png */; };
+		8BE5EEA21819B9C400D2B024 /* UM.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE5EE9E1819B9C400D2B024 /* UM.png */; };
+		8BE5EEA31819B9C400D2B024 /* UW.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE5EE9F1819B9C400D2B024 /* UW.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +65,10 @@
 		8BE5EE971819B56C00D2B024 /* CollegeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollegeCell.h; sourceTree = "<group>"; };
 		8BE5EE981819B56C00D2B024 /* CollegeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollegeCell.m; sourceTree = "<group>"; };
 		8BE5EE9A1819B58A00D2B024 /* CollegeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollegeCell.xib; sourceTree = "<group>"; };
+		8BE5EE9C1819B9C400D2B024 /* IU.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IU.png; path = ../../Desktop/IU.png; sourceTree = "<group>"; };
+		8BE5EE9D1819B9C400D2B024 /* MSU.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MSU.png; path = ../../Desktop/MSU.png; sourceTree = "<group>"; };
+		8BE5EE9E1819B9C400D2B024 /* UM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UM.png; path = ../../Desktop/UM.png; sourceTree = "<group>"; };
+		8BE5EE9F1819B9C400D2B024 /* UW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UW.png; path = ../../Desktop/UW.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +177,10 @@
 		8BE5EE911819B24C00D2B024 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				8BE5EE9C1819B9C400D2B024 /* IU.png */,
+				8BE5EE9D1819B9C400D2B024 /* MSU.png */,
+				8BE5EE9E1819B9C400D2B024 /* UM.png */,
+				8BE5EE9F1819B9C400D2B024 /* UW.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -249,8 +261,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BE5EEA01819B9C400D2B024 /* IU.png in Resources */,
 				8BB469D01810640E00F7522C /* Images.xcassets in Resources */,
 				8BB469C81810640E00F7522C /* Main_iPhone.storyboard in Resources */,
+				8BE5EEA11819B9C400D2B024 /* MSU.png in Resources */,
+				8BE5EEA21819B9C400D2B024 /* UM.png in Resources */,
+				8BE5EEA31819B9C400D2B024 /* UW.png in Resources */,
 				8BB469BF1810640E00F7522C /* InfoPlist.strings in Resources */,
 				8BE5EE9B1819B58A00D2B024 /* CollegeCell.xib in Resources */,
 			);
