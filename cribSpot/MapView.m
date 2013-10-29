@@ -39,7 +39,7 @@
 
 -(BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker{
     if (test.hidden==TRUE) {
-        test.hidden=FALSE;
+        //test.hidden=FALSE;
     }
     else{
         test.hidden=TRUE;
@@ -138,7 +138,9 @@
 
     
     [self.view addSubview:mapView_];
+    [self.testToolbar setFrame:CGRectMake(self.view.frame.size.height-100, 0, self.view.frame.size.width, 50)];
     [self.view bringSubviewToFront:self.testToolbar];
+    
     [self.view addSubview:test];
 
     
