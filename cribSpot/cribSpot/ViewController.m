@@ -21,8 +21,37 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"sdf");
-    CollegeInfo = [[NSDictionary alloc]initWithObjects:[NSArray arrayWithObjects:[NSArray arrayWithObjects:@"University of Michigan",@"Michigan State University",@"Indiana University",@"University of Wisconsin", nil],[NSArray arrayWithObjects:@"UM.png",@"MSU.png",@"IU.png",@"UW.png", nil],[NSArray arrayWithObjects:[NSNumber numberWithDouble:42.276935],[NSNumber numberWithDouble:42.736979],[NSNumber numberWithDouble:39.165325],[NSNumber numberWithDouble:43.076592], nil],[NSArray arrayWithObjects:[NSNumber numberWithDouble:-83.738210],[NSNumber numberWithDouble:-84.483865],[NSNumber numberWithDouble:-86.5263857],[NSNumber numberWithDouble:-89.412487], nil], nil] forKeys:[NSArray arrayWithObjects:@"names",@"pictures",@"long",@"lat",nil]];
+    
+    NSString *collegeURL = @"http://www.cribspot.com/Universities/GetUniversities?token=jg836djHjTk95Pxk69J6X4";
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:collegeURL]];
+    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSError *jsonParsingError = nil;
+    NSArray * colleges=[NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:&jsonParsingError];
+    
+    
+    NSMutableArray *names = [[NSMutableArray alloc] init];
+    NSMutableArray *imagenames=[[NSMutableArray alloc] init];
+    NSMutableArray *latitudes=[[NSMutableArray alloc] init];
+    NSMutableArray *longitudes=[[NSMutableArray alloc] init];
+    
+    for (NSDictionary *test in colleges) {
+        NSDictionary *boom = [test objectForKey:@"University"];
+        NSString *name = [boom objectForKey:@"full_name"];
+        NSString *imagename = [boom objectForKey:@"logo_path"];
+        NSNumber *latitude = [boom objectForKey:@"latitude"];
+        NSNumber *longitude = [boom objectForKey:@"longitude"];
+        
+        [names addObject:name];
+        [imagenames addObject:imagename];
+        [latitudes addObject:latitude];
+        [longitudes addObject:longitude];
+    }
+    
+    
+    
+    
+    
+    CollegeInfo = [[NSDictionary alloc]initWithObjects:[NSArray arrayWithObjects:names,imagenames,longitudes,latitudes, nil] forKeys:[NSArray arrayWithObjects:@"names",@"pictures",@"long",@"lat",nil]];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -45,8 +74,19 @@
         cell = [nib objectAtIndex:0];
     }
     
-    cell.label.text =  [NSString stringWithFormat:[[CollegeInfo objectForKey:@"names"] objectAtIndex:indexPath.row]];
-    [cell.image setImage:[UIImage imageNamed:[NSString stringWithFormat:[[CollegeInfo objectForKey:@"pictures"] objectAtIndex:indexPath.row]]]];
+    cell.label.text =  [[CollegeInfo objectForKey:@"names"] objectAtIndex:indexPath.row];
+    NSString *path=[[CollegeInfo objectForKey:@"pictures"] objectAtIndex:indexPath.row];
+    NSString *newpath = [path substringWithRange:NSMakeRange(1, [path length]-1)];
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat: @"https://s3-us-west-2.amazonaws.com/cribspot-%@", newpath]];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *img = [UIImage imageWithData:data];
+    
+    
+    
+    
+    
+    [cell.image setImage:img];
     
     return cell;
 }
@@ -58,6 +98,9 @@
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
     MapView *lvc = [storyboard instantiateViewControllerWithIdentifier:@"mapBaby"];
+    
+    
+    
     lvc.collegeData = [[NSMutableArray alloc] initWithObjects:[NSString stringWithFormat:[[CollegeInfo objectForKey:@"names"] objectAtIndex:indexPath.row]],[NSString stringWithFormat:[[CollegeInfo objectForKey:@"pictures"] objectAtIndex:indexPath.row]],[[CollegeInfo objectForKey:@"long"] objectAtIndex:indexPath.row],[[CollegeInfo objectForKey:@"lat"] objectAtIndex:indexPath.row],nil];
     [self.navigationController pushViewController:lvc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

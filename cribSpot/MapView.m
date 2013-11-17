@@ -138,14 +138,9 @@
 
     
     [self.view addSubview:mapView_];
-    [self.testToolbar setFrame:CGRectMake(self.view.frame.size.height-100, 0, self.view.frame.size.width, 50)];
     [self.view bringSubviewToFront:self.testToolbar];
-    
     [self.view addSubview:test];
-
-    
     UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle: @"Back" style: UIBarButtonItemStyleBordered target: nil action: nil];
-    
     [[self navigationItem] setBackBarButtonItem: newBackButton];
     
     [super viewDidLoad];
