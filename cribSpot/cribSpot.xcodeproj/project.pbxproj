@@ -28,7 +28,6 @@
 		8B2AD336181EF94300F96678 /* SearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2AD330181EF94300F96678 /* SearchView.m */; };
 		8B2AD338181EF9BE00F96678 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B2AD337181EF9BE00F96678 /* Main_iPhone.storyboard */; };
 		8B2AD33A181EFA0100F96678 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B2AD339181EFA0100F96678 /* GoogleMaps.framework */; };
-		8B2AD33C181EFA1F00F96678 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8B2AD33B181EFA1F00F96678 /* GoogleMaps.bundle */; };
 		8B2AD33E181EFA4B00F96678 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B2AD33D181EFA4B00F96678 /* AVFoundation.framework */; };
 		8B2AD340181EFA5100F96678 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B2AD33F181EFA5100F96678 /* CoreData.framework */; };
 		8B2AD342181EFA5700F96678 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B2AD341181EFA5700F96678 /* CoreLocation.framework */; };
@@ -350,6 +349,7 @@
 		8B2AD5D2181EFDA500F96678 /* north.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B2AD49D181EFDA500F96678 /* north.png */; };
 		8B2AD5D3181EFDA500F96678 /* UM.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B2AD49E181EFDA500F96678 /* UM.png */; };
 		8B2AD5D4181EFDA500F96678 /* UW.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B2AD49F181EFDA500F96678 /* UW.png */; };
+		8B510BB918456034001F66F5 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8B510BB818456034001F66F5 /* GoogleMaps.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -394,7 +394,6 @@
 		8B2AD330181EF94300F96678 /* SearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchView.m; path = ../SearchView.m; sourceTree = "<group>"; };
 		8B2AD337181EF9BE00F96678 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
 		8B2AD339181EFA0100F96678 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
-		8B2AD33B181EFA1F00F96678 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "../../../../Downloads/GoogleMaps-iOS-1.5.0 4/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
 		8B2AD33D181EFA4B00F96678 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8B2AD33F181EFA5100F96678 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8B2AD341181EFA5700F96678 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -716,6 +715,7 @@
 		8B2AD49D181EFDA500F96678 /* north.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = north.png; sourceTree = "<group>"; };
 		8B2AD49E181EFDA500F96678 /* UM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UM.png; sourceTree = "<group>"; };
 		8B2AD49F181EFDA500F96678 /* UW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UW.png; sourceTree = "<group>"; };
+		8B510BB818456034001F66F5 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "../../../../Downloads/GoogleMaps-iOS-1.5.0/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -778,6 +778,7 @@
 		8B2AD2F0181EF8D500F96678 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8B510BB818456034001F66F5 /* GoogleMaps.bundle */,
 				8B2AD353181EFA9800F96678 /* SystemConfiguration.framework */,
 				8B2AD351181EFA9200F96678 /* QuartzCore.framework */,
 				8B2AD34F181EFA8C00F96678 /* OpenGLES.framework */,
@@ -790,7 +791,6 @@
 				8B2AD341181EFA5700F96678 /* CoreLocation.framework */,
 				8B2AD33F181EFA5100F96678 /* CoreData.framework */,
 				8B2AD33D181EFA4B00F96678 /* AVFoundation.framework */,
-				8B2AD33B181EFA1F00F96678 /* GoogleMaps.bundle */,
 				8B2AD339181EFA0100F96678 /* GoogleMaps.framework */,
 				8B2AD2F1181EF8D500F96678 /* Foundation.framework */,
 				8B2AD2F3181EF8D500F96678 /* CoreGraphics.framework */,
@@ -1292,6 +1292,7 @@
 				8B2AD504181EFDA500F96678 /* dropper.png in Resources */,
 				8B2AD4AF181EFDA500F96678 /* arrow-big-07.png in Resources */,
 				8B2AD5C4181EFDA500F96678 /* wheelbarrow.png in Resources */,
+				8B510BB918456034001F66F5 /* GoogleMaps.bundle in Resources */,
 				8B2AD552181EFDA500F96678 /* no-entry.png in Resources */,
 				8B2AD4AD181EFDA500F96678 /* arrow-big-05.png in Resources */,
 				8B2AD5B2181EFDA500F96678 /* tic-tac-toe.png in Resources */,
@@ -1575,7 +1576,6 @@
 				8B2AD53E181EFDA500F96678 /* magic.png in Resources */,
 				8B2AD510181EFDA500F96678 /* fax.png in Resources */,
 				8B2AD505181EFDA500F96678 /* drumstick.png in Resources */,
-				8B2AD33C181EFA1F00F96678 /* GoogleMaps.bundle in Resources */,
 				8B2AD598181EFDA500F96678 /* spanner.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1815,6 +1815,7 @@
 				8B2AD322181EF8D600F96678 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8B2AD323181EF8D600F96678 /* Build configuration list for PBXNativeTarget "cribSpotTests" */ = {
 			isa = XCConfigurationList;
@@ -1823,6 +1824,7 @@
 				8B2AD325181EF8D600F96678 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

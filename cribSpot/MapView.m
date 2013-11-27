@@ -64,10 +64,10 @@
 
 - (void)viewDidLoad
 {
-    CLLocationDegrees longitude = [[collegeData objectAtIndex:2] doubleValue];
-    CLLocationDegrees latitude = [[collegeData objectAtIndex:3] doubleValue];
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:longitude
-                                                            longitude:latitude
+    CLLocationDegrees longitude = [[collegeData objectAtIndex:1] doubleValue];
+    CLLocationDegrees latitude = [[collegeData objectAtIndex:2] doubleValue];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude
+                                                            longitude:longitude
                                                                  zoom:13];
     GMSMapView *mapView_ = [GMSMapView mapWithFrame:[[UIScreen mainScreen] applicationFrame] camera:camera];
     mapView_.myLocationEnabled = YES;

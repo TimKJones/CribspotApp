@@ -34,6 +34,8 @@
     NSMutableArray *latitudes=[[NSMutableArray alloc] init];
     NSMutableArray *longitudes=[[NSMutableArray alloc] init];
     
+    //add university ids
+    
     for (NSDictionary *test in colleges) {
         NSDictionary *boom = [test objectForKey:@"University"];
         NSString *name = [boom objectForKey:@"full_name"];
@@ -41,8 +43,15 @@
         NSNumber *latitude = [boom objectForKey:@"latitude"];
         NSNumber *longitude = [boom objectForKey:@"longitude"];
         
+        
+        NSString *newpath = [imagename substringWithRange:NSMakeRange(1, [imagename length]-1)];
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat: @"https://s3-us-west-2.amazonaws.com/cribspot-%@", newpath]];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        UIImage *img = [UIImage imageWithData:data];
+        
+        
         [names addObject:name];
-        [imagenames addObject:imagename];
+        [imagenames addObject:img];
         [latitudes addObject:latitude];
         [longitudes addObject:longitude];
     }
@@ -75,18 +84,16 @@
     }
     
     cell.label.text =  [[CollegeInfo objectForKey:@"names"] objectAtIndex:indexPath.row];
-    NSString *path=[[CollegeInfo objectForKey:@"pictures"] objectAtIndex:indexPath.row];
-    NSString *newpath = [path substringWithRange:NSMakeRange(1, [path length]-1)];
-    
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat: @"https://s3-us-west-2.amazonaws.com/cribspot-%@", newpath]];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    UIImage *img = [UIImage imageWithData:data];
     
     
     
     
     
-    [cell.image setImage:img];
+    
+    
+    
+    [cell.image setImage:[[CollegeInfo objectForKey:@"pictures"] objectAtIndex:indexPath.row]];
+    
     
     return cell;
 }
@@ -101,7 +108,7 @@
     
     
     
-    lvc.collegeData = [[NSMutableArray alloc] initWithObjects:[NSString stringWithFormat:[[CollegeInfo objectForKey:@"names"] objectAtIndex:indexPath.row]],[NSString stringWithFormat:[[CollegeInfo objectForKey:@"pictures"] objectAtIndex:indexPath.row]],[[CollegeInfo objectForKey:@"long"] objectAtIndex:indexPath.row],[[CollegeInfo objectForKey:@"lat"] objectAtIndex:indexPath.row],nil];
+    lvc.collegeData = [[NSMutableArray alloc] initWithObjects:[NSString stringWithFormat:[[CollegeInfo objectForKey:@"names"] objectAtIndex:indexPath.row]],[[CollegeInfo objectForKey:@"long"] objectAtIndex:indexPath.row],[[CollegeInfo objectForKey:@"lat"] objectAtIndex:indexPath.row],nil];
     [self.navigationController pushViewController:lvc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
