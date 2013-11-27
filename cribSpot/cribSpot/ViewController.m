@@ -28,7 +28,7 @@
     NSError *jsonParsingError = nil;
     NSArray * colleges=[NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:&jsonParsingError];
     
-    
+    NSMutableArray *idarray =[[NSMutableArray alloc] init];
     NSMutableArray *names = [[NSMutableArray alloc] init];
     NSMutableArray *imagenames=[[NSMutableArray alloc] init];
     NSMutableArray *latitudes=[[NSMutableArray alloc] init];
@@ -42,6 +42,7 @@
         NSString *imagename = [boom objectForKey:@"logo_path"];
         NSNumber *latitude = [boom objectForKey:@"latitude"];
         NSNumber *longitude = [boom objectForKey:@"longitude"];
+        NSNumber *ids = [boom objectForKey:@"id"];
         
         
         NSString *newpath = [imagename substringWithRange:NSMakeRange(1, [imagename length]-1)];
@@ -49,7 +50,7 @@
         NSData *data = [NSData dataWithContentsOfURL:url];
         UIImage *img = [UIImage imageWithData:data];
         
-        
+        [idarray addObject:ids];
         [names addObject:name];
         [imagenames addObject:img];
         [latitudes addObject:latitude];
@@ -60,7 +61,7 @@
     
     
     
-    CollegeInfo = [[NSDictionary alloc]initWithObjects:[NSArray arrayWithObjects:names,imagenames,longitudes,latitudes, nil] forKeys:[NSArray arrayWithObjects:@"names",@"pictures",@"long",@"lat",nil]];
+    CollegeInfo = [[NSDictionary alloc]initWithObjects:[NSArray arrayWithObjects:names,imagenames,longitudes,latitudes, idarray,nil] forKeys:[NSArray arrayWithObjects:@"names",@"pictures",@"long",@"lat",@"ids",nil]];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -108,7 +109,7 @@
     
     
     
-    lvc.collegeData = [[NSMutableArray alloc] initWithObjects:[NSString stringWithFormat:[[CollegeInfo objectForKey:@"names"] objectAtIndex:indexPath.row]],[[CollegeInfo objectForKey:@"long"] objectAtIndex:indexPath.row],[[CollegeInfo objectForKey:@"lat"] objectAtIndex:indexPath.row],nil];
+    lvc.collegeData = [[NSMutableArray alloc] initWithObjects:[NSString stringWithFormat:[[CollegeInfo objectForKey:@"names"] objectAtIndex:indexPath.row]],[[CollegeInfo objectForKey:@"long"] objectAtIndex:indexPath.row],[[CollegeInfo objectForKey:@"lat"] objectAtIndex:indexPath.row],[[CollegeInfo objectForKey:@"ids"] objectAtIndex:indexPath.row],nil];
     [self.navigationController pushViewController:lvc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

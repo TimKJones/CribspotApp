@@ -66,6 +66,9 @@
 {
     CLLocationDegrees longitude = [[collegeData objectAtIndex:1] doubleValue];
     CLLocationDegrees latitude = [[collegeData objectAtIndex:2] doubleValue];
+    int newid = [[collegeData objectAtIndex:3] integerValue];
+    
+    
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude
                                                             longitude:longitude
                                                                  zoom:13];
@@ -79,48 +82,71 @@
     
     test = [[UIView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, self.view.frame.size.width, 78)];
     test.backgroundColor = [UIColor whiteColor];
-    
     test.hidden =YES;
     
-    GMSMarker *marker1 = [[GMSMarker alloc] init];
-    marker1.position = CLLocationCoordinate2DMake(42.271873, -83.750764);
-    marker1.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
-    marker1.title = @"203 Koch Ave";
-    marker1.snippet = @"J Keller Properties";
-    marker1.map =mapView_;
     
-    GMSMarker *marker2 = [[GMSMarker alloc] init];
-    marker2.position = CLLocationCoordinate2DMake(42.285218, -83.739853);
-    marker2.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
-    marker2.title = @"727 E. Kingsley";
-    marker2.snippet = @"J Keller Properties";
-    marker2.map =mapView_;
+    NSString *collegeURL = [NSString stringWithFormat:@"https://www.cribspot.com/Map/APIGetBasicData/0/%d?token=jg836djHjTk95Pxk69J6X4",newid];
     
-    GMSMarker *marker3 = [[GMSMarker alloc] init];
-    marker3.position = CLLocationCoordinate2DMake(42.280876, -83.728920);
-    marker3.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
-    marker3.title = @"Markley Hall";
-    marker3.snippet = @"Michigan Housing";
-    marker3.map =mapView_;
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:collegeURL]];
+    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSError *jsonParsingError = nil;
+    NSArray * collegeInfo=[NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:&jsonParsingError];
     
-    GMSMarker *marker4 = [[GMSMarker alloc] init];
-    marker4.position = CLLocationCoordinate2DMake(42.295809, -83.717945);
-    marker4.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
-    marker4.title = @"Northwood 3";
-    marker4.snippet = @"Michigan Housing";
-    marker4.map =mapView_;
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat: @"https://s3-us-west-2.amazonaws.com/cribspot-img/dots/dot_available.png"]];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *availimage = [UIImage imageWithData:data];
+
+    NSURL *url2 = [NSURL URLWithString:[NSString stringWithFormat: @"https://s3-us-west-2.amazonaws.com/cribspot-img/dots/dot_leased.png"]];
+    NSData *data2 = [NSData dataWithContentsOfURL:url2];
+    UIImage *leasedimage = [UIImage imageWithData:data2];
+    
+    NSURL *url3 = [NSURL URLWithString:[NSString stringWithFormat: @"https://s3-us-west-2.amazonaws.com/cribspot-img/dots/dot_unknown.png"]];
+    NSData *data3 = [NSData dataWithContentsOfURL:url3];
+    UIImage *unknownimage = [UIImage imageWithData:data3];
     
     
-    marker1.zIndex=1;
-    marker3.zIndex=2;
-    marker2.zIndex=3;
-    marker4.zIndex=4;
+    
+    //add university ids
+    int count =0;
+    for (NSDictionary *test1 in collegeInfo) {
+        NSDictionary *Marker = [test1 objectForKey:@"Marker"];
+        NSDictionary *Listing = [test1 objectForKey:@"Listing"];
+        NSDictionary *Sublet = [test1 objectForKey:@"Sublet"];
+        NSNumber *testlong =[Marker objectForKey:@"longitude"];
+        NSNumber *testlat =[Marker objectForKey:@"latitude"];
+        id available = [Listing objectForKey:@"available"];
+
+        
+        
+        
+        GMSMarker *markerTest =[[GMSMarker alloc] init];
+        markerTest.position = CLLocationCoordinate2DMake((CLLocationDegrees)[testlat doubleValue], (CLLocationDegrees)[testlong doubleValue]);
+        markerTest.icon= availimage;
+        if (available==[NSNull null]) {
+            markerTest.icon= unknownimage;
+        }
+        else if ([available boolValue]) {
+            markerTest.icon= availimage;
+        }
+        else{
+            markerTest.icon = leasedimage;
+        }
+        
+
+        
+        markerTest.map =mapView_;
+        
+        if (count++>200) {
+            break;
+        }
+        
+    }
     
     
     
     
     mapView_.delegate=self;
-    houseData = [[NSDictionary alloc]initWithObjects:[NSArray arrayWithObjects:[NSArray arrayWithObjects:@"203 Koch Ave",@"Mary Markley Hall",@"727 E. Kingsley",@"Northwood 3", nil],[NSArray arrayWithObjects:@"203.png",@"mark.png",@"727.png",@"north.png", nil],[NSArray arrayWithObjects:@"This 6 Bedroom Beauty is a steal for $9250/month",@"\"Real Wolverines live in Mary Markley Hall\" - Mary Sue", @"Don't let the size of the place fool you.  This beige-walled biznatch makes those tenants go OYY YOY YOY!",@"If you like having friends, FORGET ABOUT IT. Literally the most antisocial place on Earth. Where friendships go to die. $26,000 per month.",nil], nil] forKeys:[NSArray arrayWithObjects:@"address",@"pictures",@"desc",nil]];
+    
     
     
     
