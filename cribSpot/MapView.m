@@ -39,14 +39,52 @@
 
 -(BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker{
     if (test.hidden==TRUE) {
-        //test.hidden=FALSE;
+        CGRect curFrame = test.frame;
+        test.frame = CGRectMake(0, 20, 320, 0);
+        test.hidden=FALSE;
+        [UIView animateWithDuration:0.5
+                         animations:^{
+                             test.frame = curFrame;
+                             
+                         }];
+        
     }
-    else{
-        test.hidden=TRUE;
+    else {
+        [UIView animateWithDuration:0.5
+                         animations:^{
+                             test.frame = CGRectMake(0, 20, 320, 0);
+                             
+                         }
+                         completion:^(BOOL finished){
+                             if (finished) {
+                                 test.hidden=TRUE;
+                                 test.frame=CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, self.view.frame.size.width, 78);
+                                 
+                             }
+                         }];
     }
     
         return false;
 }
+
+-(void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate{
+    
+    if (test.hidden==FALSE) {
+        [UIView animateWithDuration:0.5
+                         animations:^{
+                             test.frame = CGRectMake(0, 20, 320, 0);
+                             
+                         }
+                         completion:^(BOOL finished){
+                             if (finished) {
+                                 test.hidden=TRUE;
+                                 test.frame=CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, self.view.frame.size.width, 78);
+                                 
+                             }
+                         }];
+    }
+}
+
 
 -(void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker{
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
@@ -104,17 +142,18 @@
     NSData *data3 = [NSData dataWithContentsOfURL:url3];
     UIImage *unknownimage = [UIImage imageWithData:data3];
     
-    
+    mapView_.delegate=self;
     
     //add university ids
     int count =0;
     for (NSDictionary *test1 in collegeInfo) {
         NSDictionary *Marker = [test1 objectForKey:@"Marker"];
         NSDictionary *Listing = [test1 objectForKey:@"Listing"];
-        NSDictionary *Sublet = [test1 objectForKey:@"Sublet"];
+        NSDictionary *Sublet = [test1 objectForKey:@"Rental"];
         NSNumber *testlong =[Marker objectForKey:@"longitude"];
         NSNumber *testlat =[Marker objectForKey:@"latitude"];
         id available = [Listing objectForKey:@"available"];
+        
 
         
         
@@ -145,7 +184,7 @@
     
     
     
-    mapView_.delegate=self;
+    
     
     
     
