@@ -38,17 +38,32 @@
 }
 
 -(BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker{
+    UILabel *label1 = (UILabel*)[test viewWithTag:69];
+    UILabel *label2 = (UILabel*)[test viewWithTag:68];
+    UILabel *label3 = (UILabel*)[test viewWithTag:67];
     if (test.hidden==TRUE) {
         CGRect curFrame = test.frame;
         test.frame = CGRectMake(0, 20, 320, 0);
         test.hidden=FALSE;
+        [label1 setHidden:TRUE];
+        [label2 setHidden:TRUE];
+        [label3 setHidden:TRUE];
         [UIView animateWithDuration:0.5
                          animations:^{
                              test.frame = curFrame;
                              
+                         }
+                         completion:^(BOOL finished) {
+                             [label1 setHidden:FALSE];
+                             [label2 setHidden:FALSE];
+                             [label3 setHidden:FALSE];
                          }];
         
     }
+    
+    
+    
+    /*
     else {
         [UIView animateWithDuration:0.5
                          animations:^{
@@ -63,6 +78,44 @@
                              }
                          }];
     }
+    */
+    
+    int markerid = marker.zIndex;
+    
+    NSString *markerURL = [NSString stringWithFormat:@"https://www.cribspot.com/Listings/APIGetListingsByMarkerId/%d?token=jg836djHjTk95Pxk69J6X4",markerid];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:markerURL]];
+    NSError *error;
+    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
+    NSError *jsonParsingError = nil;
+    if (!error) {
+        NSArray * markerInfo=[NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:&jsonParsingError];
+        for (NSDictionary *boom in markerInfo){
+            NSDictionary *Marker = [boom objectForKey:@"Marker"];
+            NSDictionary *Rental = [boom objectForKey:@"Rental"];
+            NSString *address = [Marker objectForKey:@"street_address"];
+            NSString *rent = [Rental objectForKey:@"rent"];
+            NSString *baths = [Rental objectForKey:@"baths"];
+            NSString *beds = [Rental objectForKey:@"beds"];
+            
+            UILabel *addressLabel = (UILabel*)[test viewWithTag:69];
+            [addressLabel setText:address];
+            
+            UILabel *bbLabel = (UILabel*)[test viewWithTag:68];
+            NSString *bbstring = [NSString stringWithFormat:@"%@ Beds and %@ Baths",beds,baths];
+            [bbLabel setText:bbstring];
+            
+            UILabel *rentLabel = (UILabel*)[test viewWithTag:67];
+            NSString *rentstring = [NSString stringWithFormat:@"$%@/m",rent];
+            [rentLabel setText:rentstring];
+            
+            break;
+ 
+        }
+    }
+    
+    
+    
     
         return false;
 }
@@ -70,6 +123,12 @@
 -(void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate{
     
     if (test.hidden==FALSE) {
+        UILabel *label1 = (UILabel*)[test viewWithTag:69];
+        UILabel *label2 = (UILabel*)[test viewWithTag:68];
+        UILabel *label3 = (UILabel*)[test viewWithTag:67];
+        [label1 setHidden:TRUE];
+        [label2 setHidden:TRUE];
+        [label3 setHidden:TRUE];
         [UIView animateWithDuration:0.5
                          animations:^{
                              test.frame = CGRectMake(0, 20, 320, 0);
@@ -119,8 +178,31 @@
     
     
     test = [[UIView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, self.view.frame.size.width, 78)];
-    test.backgroundColor = [UIColor whiteColor];
+    
+    test.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.85f];;
+    
     test.hidden =YES;
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 15, 310, 24)];
+    label.tag = 69;
+    [label setFont:[UIFont boldSystemFontOfSize:20]];
+    [label setTextAlignment:NSTextAlignmentRight];
+    
+    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 45, 310, 20)];
+    label2.tag = 68;
+    [label2 setTextAlignment:NSTextAlignmentRight];
+    
+    UILabel *label3 =[[UILabel alloc] initWithFrame:CGRectMake(15, 30, 200, 20)];
+    label3.tag = 67;
+    [label3 setFont:[UIFont boldSystemFontOfSize:15]];
+    [label3 setTextColor:[UIColor redColor]];
+    [label3 setTextAlignment:NSTextAlignmentLeft];
+    
+    
+    [test addSubview:label];
+    [test addSubview:label2];
+    [test addSubview:label3];
+    
     
     
     NSString *collegeURL = [NSString stringWithFormat:@"https://www.cribspot.com/Map/APIGetBasicData/0/%d?token=jg836djHjTk95Pxk69J6X4",newid];
@@ -153,7 +235,7 @@
         NSNumber *testlong =[Marker objectForKey:@"longitude"];
         NSNumber *testlat =[Marker objectForKey:@"latitude"];
         id available = [Listing objectForKey:@"available"];
-        
+        int markerid = [[Marker objectForKey:@"marker_id"] integerValue];
 
         
         
@@ -161,6 +243,7 @@
         GMSMarker *markerTest =[[GMSMarker alloc] init];
         markerTest.position = CLLocationCoordinate2DMake((CLLocationDegrees)[testlat doubleValue], (CLLocationDegrees)[testlong doubleValue]);
         markerTest.icon= availimage;
+        markerTest.zIndex = markerid;
         if (available==[NSNull null]) {
             markerTest.icon= unknownimage;
         }
