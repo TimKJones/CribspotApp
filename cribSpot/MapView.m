@@ -41,6 +41,14 @@
     UILabel *label1 = (UILabel*)[test viewWithTag:69];
     UILabel *label2 = (UILabel*)[test viewWithTag:68];
     UILabel *label3 = (UILabel*)[test viewWithTag:67];
+    
+    
+    UITapGestureRecognizer *singleFingerTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:test
+                                            action:@selector(handleSingleTap:)];
+    [self.view addGestureRecognizer:singleFingerTap];
+    
+    
     if (test.hidden==TRUE) {
         CGRect curFrame = test.frame;
         test.frame = CGRectMake(0, 20, 320, 0);
@@ -61,24 +69,7 @@
         
     }
     
-    
-    
-    /*
-    else {
-        [UIView animateWithDuration:0.5
-                         animations:^{
-                             test.frame = CGRectMake(0, 20, 320, 0);
-                             
-                         }
-                         completion:^(BOOL finished){
-                             if (finished) {
-                                 test.hidden=TRUE;
-                                 test.frame=CGRectMake(0, self.navigationController.navigationBar.frame.size.height+20, self.view.frame.size.width, 78);
-                                 
-                             }
-                         }];
-    }
-    */
+
     
     int markerid = marker.zIndex;
     
@@ -291,8 +282,21 @@
     UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle: @"Back" style: UIBarButtonItemStyleBordered target: nil action: nil];
     [[self navigationItem] setBackBarButtonItem: newBackButton];
     
+   
+    
+    
+    //The event handling method
+
+    
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
+    CGPoint location = [recognizer locationInView:[recognizer.view superview]];
+
+    //PUSH TO DETAIL VIEW
 }
 
 -(void)viewDidAppear:(BOOL)animated{
