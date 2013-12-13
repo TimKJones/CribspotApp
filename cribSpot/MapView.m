@@ -19,6 +19,7 @@
 {
     NSDictionary *houseData;
     UIView *test;
+    NSNumber *secretNumber;
 }
 @synthesize collegeData;
 
@@ -43,11 +44,7 @@
     UILabel *label3 = (UILabel*)[test viewWithTag:67];
     
     
-    UITapGestureRecognizer *singleFingerTap =
-    [[UITapGestureRecognizer alloc] initWithTarget:test
-                                            action:@selector(handleSingleTap:)];
-    [self.view addGestureRecognizer:singleFingerTap];
-    
+   
     
     if (test.hidden==TRUE) {
         CGRect curFrame = test.frame;
@@ -69,9 +66,12 @@
         
     }
     
+    
 
     
     int markerid = marker.zIndex;
+    
+    secretNumber = [NSNumber numberWithInt:markerid];
     
     NSString *markerURL = [NSString stringWithFormat:@"https://www.cribspot.com/Listings/APIGetListingsByMarkerId/%d?token=jg836djHjTk95Pxk69J6X4",markerid];
     
@@ -283,6 +283,12 @@
     [[self navigationItem] setBackBarButtonItem: newBackButton];
     
    
+    UITapGestureRecognizer *singleFingerTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(handleSingleTap:)];
+    [test addGestureRecognizer:singleFingerTap];
+    
+    
     
     
     //The event handling method
@@ -295,8 +301,12 @@
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:[recognizer.view superview]];
-
+    
+    
+    
     //PUSH TO DETAIL VIEW
+    
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
