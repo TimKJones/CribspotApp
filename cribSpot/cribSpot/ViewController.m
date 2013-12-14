@@ -45,6 +45,8 @@
         NSNumber *ids = [boom objectForKey:@"id"];
         
         
+        
+        
         NSString *newpath = [imagename substringWithRange:NSMakeRange(1, [imagename length]-1)];
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat: @"https://s3-us-west-2.amazonaws.com/cribspot-%@", newpath]];
         NSData *data = [NSData dataWithContentsOfURL:url];

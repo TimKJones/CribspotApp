@@ -42,6 +42,7 @@
     UILabel *label1 = (UILabel*)[test viewWithTag:69];
     UILabel *label2 = (UILabel*)[test viewWithTag:68];
     UILabel *label3 = (UILabel*)[test viewWithTag:67];
+    UIImageView *image1 = (UIImageView*)[test viewWithTag:66];
     
     
    
@@ -53,6 +54,7 @@
         [label1 setHidden:TRUE];
         [label2 setHidden:TRUE];
         [label3 setHidden:TRUE];
+        [image1 setHidden:TRUE];
         [UIView animateWithDuration:0.5
                          animations:^{
                              test.frame = curFrame;
@@ -62,6 +64,7 @@
                              [label1 setHidden:FALSE];
                              [label2 setHidden:FALSE];
                              [label3 setHidden:FALSE];
+                             [image1 setHidden:FALSE];
                          }];
         
     }
@@ -85,19 +88,33 @@
             NSDictionary *Marker = [boom objectForKey:@"Marker"];
             NSDictionary *Rental = [boom objectForKey:@"Rental"];
             NSString *address = [Marker objectForKey:@"street_address"];
-            NSString *rent = [Rental objectForKey:@"rent"];
-            NSString *baths = [Rental objectForKey:@"baths"];
-            NSString *beds = [Rental objectForKey:@"beds"];
+            NSNumber *rent = [Rental objectForKey:@"rent"];
+            NSNumber *baths = [Rental objectForKey:@"baths"];
+            NSNumber *beds = [Rental objectForKey:@"beds"];
             
             UILabel *addressLabel = (UILabel*)[test viewWithTag:69];
             [addressLabel setText:address];
             
             UILabel *bbLabel = (UILabel*)[test viewWithTag:68];
-            NSString *bbstring = [NSString stringWithFormat:@"%@ Beds and %@ Baths",beds,baths];
+            NSString *bbstring;
+            if (beds==[NSNull null]) {
+                bbstring =@"";
+            }
+            else{
+            bbstring = [NSString stringWithFormat:@"%@ Beds and %@ Baths",beds,baths];
+            }
             [bbLabel setText:bbstring];
             
+            
+            NSString *rentstring;
             UILabel *rentLabel = (UILabel*)[test viewWithTag:67];
-            NSString *rentstring = [NSString stringWithFormat:@"$%@/m",rent];
+            if (rent==[NSNull null]) {
+                rentstring =@"";
+            }
+            else{
+                rentstring = [NSString stringWithFormat:@"$%@/m",rent];
+            }
+            
             [rentLabel setText:rentstring];
             
             break;
@@ -117,9 +134,11 @@
         UILabel *label1 = (UILabel*)[test viewWithTag:69];
         UILabel *label2 = (UILabel*)[test viewWithTag:68];
         UILabel *label3 = (UILabel*)[test viewWithTag:67];
+        UIImageView *image1 = (UIImageView*)[test viewWithTag:66];
         [label1 setHidden:TRUE];
         [label2 setHidden:TRUE];
         [label3 setHidden:TRUE];
+        [image1 setHidden:TRUE];
         [UIView animateWithDuration:0.5
                          animations:^{
                              test.frame = CGRectMake(0, 20, 320, 0);
@@ -174,22 +193,27 @@
     
     test.hidden =YES;
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 15, 310, 24)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 15, 310, 24)]; //address
     label.tag = 69;
     [label setFont:[UIFont boldSystemFontOfSize:20]];
     [label setTextAlignment:NSTextAlignmentRight];
     
-    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 45, 310, 20)];
+    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 45, 310, 20)]; //bed bath
     label2.tag = 68;
     [label2 setTextAlignment:NSTextAlignmentRight];
     
-    UILabel *label3 =[[UILabel alloc] initWithFrame:CGRectMake(15, 30, 200, 20)];
+    UILabel *label3 =[[UILabel alloc] initWithFrame:CGRectMake(86, 46, 200, 20)]; //rent
     label3.tag = 67;
     [label3 setFont:[UIFont boldSystemFontOfSize:15]];
     [label3 setTextColor:[UIColor redColor]];
     [label3 setTextAlignment:NSTextAlignmentLeft];
     
+    UIImageView *image1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 78, 78)];
+    image1.tag = 66;
+    image1.image = [UIImage imageNamed:@"203.png"];
     
+    
+    [test addSubview:image1];
     [test addSubview:label];
     [test addSubview:label2];
     [test addSubview:label3];
@@ -303,6 +327,12 @@
     CGPoint location = [recognizer locationInView:[recognizer.view superview]];
     
     
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
+    houseDetail *det = [storyboard instantiateViewControllerWithIdentifier:@"houseDetail"];
+    
+    
+    det.houseData = secretNumber;
+    [self.navigationController pushViewController:det animated:YES];
     
     //PUSH TO DETAIL VIEW
     

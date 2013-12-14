@@ -349,7 +349,7 @@
 		8B2AD5D3181EFDA500F96678 /* UM.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B2AD49E181EFDA500F96678 /* UM.png */; };
 		8B2AD5D4181EFDA500F96678 /* UW.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B2AD49F181EFDA500F96678 /* UW.png */; };
 		8B510BBF18468FE5001F66F5 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B510BBE18468FE5001F66F5 /* GoogleMaps.framework */; };
-		8B510BC118468FFD001F66F5 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8B510BC018468FFD001F66F5 /* GoogleMaps.bundle */; };
+		8B8AA856185D12270007D5A0 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8B8AA855185D12270007D5A0 /* GoogleMaps.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -715,7 +715,7 @@
 		8B2AD49E181EFDA500F96678 /* UM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UM.png; sourceTree = "<group>"; };
 		8B2AD49F181EFDA500F96678 /* UW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UW.png; sourceTree = "<group>"; };
 		8B510BBE18468FE5001F66F5 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
-		8B510BC018468FFD001F66F5 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "../../../../Downloads/GoogleMaps-iOS-1.6.0/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
+		8B8AA855185D12270007D5A0 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "../../../../Downloads/GoogleMaps-iOS-1.6.0/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -778,7 +778,7 @@
 		8B2AD2F0181EF8D500F96678 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8B510BC018468FFD001F66F5 /* GoogleMaps.bundle */,
+				8B8AA855185D12270007D5A0 /* GoogleMaps.bundle */,
 				8B510BBE18468FE5001F66F5 /* GoogleMaps.framework */,
 				8B2AD353181EFA9800F96678 /* SystemConfiguration.framework */,
 				8B2AD351181EFA9200F96678 /* QuartzCore.framework */,
@@ -1292,7 +1292,6 @@
 				8B2AD504181EFDA500F96678 /* dropper.png in Resources */,
 				8B2AD4AF181EFDA500F96678 /* arrow-big-07.png in Resources */,
 				8B2AD5C4181EFDA500F96678 /* wheelbarrow.png in Resources */,
-				8B510BC118468FFD001F66F5 /* GoogleMaps.bundle in Resources */,
 				8B2AD552181EFDA500F96678 /* no-entry.png in Resources */,
 				8B2AD4AD181EFDA500F96678 /* arrow-big-05.png in Resources */,
 				8B2AD5B2181EFDA500F96678 /* tic-tac-toe.png in Resources */,
@@ -1542,6 +1541,7 @@
 				8B2AD4CE181EFDA500F96678 /* briefcase.png in Resources */,
 				8B2AD539181EFDA500F96678 /* lightbulb-off.png in Resources */,
 				8B2AD4AE181EFDA500F96678 /* arrow-big-06.png in Resources */,
+				8B8AA856185D12270007D5A0 /* GoogleMaps.bundle in Resources */,
 				8B2AD4CB181EFDA500F96678 /* box-3d.png in Resources */,
 				8B2AD5AD181EFDA500F96678 /* text-list.png in Resources */,
 				8B2AD564181EFDA500F96678 /* pine-tree.png in Resources */,

@@ -10,7 +10,7 @@
 
 @interface houseDetail : UIViewController
 
-@property(nonatomic) NSMutableArray *houseData;
+@property(nonatomic) NSNumber *houseData;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
