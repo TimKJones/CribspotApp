@@ -91,6 +91,26 @@
             NSNumber *rent = [Rental objectForKey:@"rent"];
             NSNumber *baths = [Rental objectForKey:@"baths"];
             NSNumber *beds = [Rental objectForKey:@"beds"];
+            NSArray *Image = [boom objectForKey:@"Image"];
+            if ([Image count]>=1) {
+                NSDictionary *imgdic = [Image objectAtIndex:0];
+                NSString *imgpath = [imgdic objectForKey:@"image_path"];
+                
+                
+                
+                NSString *newpath = [imgpath substringWithRange:NSMakeRange(13, [imgpath length]-13)];
+                
+                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat: @"https://s3-us-west-2.amazonaws.com/cribspot-img/listings/sml_%@",newpath]];
+                NSData *data = [NSData dataWithContentsOfURL:url];
+                UIImage *img = [UIImage imageWithData:data];
+                [image1 setImage:img];
+
+                
+                
+            }else{
+                [image1 setImage:[UIImage imageNamed:@"nopic.png"]];
+            }
+            
             
             UILabel *addressLabel = (UILabel*)[test viewWithTag:69];
             [addressLabel setText:address];
@@ -193,24 +213,24 @@
     
     test.hidden =YES;
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 15, 310, 24)]; //address
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, 310, 24)]; //address
     label.tag = 69;
     [label setFont:[UIFont boldSystemFontOfSize:20]];
     [label setTextAlignment:NSTextAlignmentRight];
     
-    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 45, 310, 20)]; //bed bath
+    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 31, 310, 20)]; //bed bath
     label2.tag = 68;
     [label2 setTextAlignment:NSTextAlignmentRight];
-    
-    UILabel *label3 =[[UILabel alloc] initWithFrame:CGRectMake(86, 46, 200, 20)]; //rent
+    UILabel *label3 =[[UILabel alloc] initWithFrame:CGRectMake(0, 51, 310, 20)]; //rent
     label3.tag = 67;
     [label3 setFont:[UIFont boldSystemFontOfSize:15]];
     [label3 setTextColor:[UIColor redColor]];
-    [label3 setTextAlignment:NSTextAlignmentLeft];
+    [label3 setTextAlignment:NSTextAlignmentRight];
     
     UIImageView *image1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 78, 78)];
     image1.tag = 66;
     image1.image = [UIImage imageNamed:@"203.png"];
+    image1.contentMode = UIViewContentModeScaleAspectFill;
     
     
     [test addSubview:image1];
