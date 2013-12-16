@@ -100,7 +100,7 @@
                 
                 NSString *newpath = [imgpath substringWithRange:NSMakeRange(13, [imgpath length]-13)];
                 
-                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat: @"https://s3-us-west-2.amazonaws.com/cribspot-img/listings/sml_%@",newpath]];
+                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat: @"https://s3-us-west-2.amazonaws.com/cribspot-img/listings/med_%@",newpath]];
                 NSData *data = [NSData dataWithContentsOfURL:url];
                 UIImage *img = [UIImage imageWithData:data];
                 [image1 setImage:img];
@@ -108,7 +108,7 @@
                 
                 
             }else{
-                [image1 setImage:[UIImage imageNamed:@"nopic.png"]];
+                [image1 setImage:[UIImage imageNamed:@"nopic.jpg"]];
             }
             
             

@@ -12,10 +12,12 @@
 
 @property(nonatomic) NSNumber *houseData;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UILabel *realator;
 
-@property (weak, nonatomic) IBOutlet UILabel *descLabel;
+
 - (IBAction)favorite:(id)sender;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *favoriteButton;
+@property (weak, nonatomic) IBOutlet UILabel *rent;
 
 @end
 
