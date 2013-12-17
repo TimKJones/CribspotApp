@@ -15,7 +15,7 @@
 @end
 
 @implementation houseTable
-@synthesize houseData;
+@synthesize houseData2;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -60,7 +60,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[houseData objectForKey:@"address"] count];
+    return [[houseData2 objectForKey:@"address"] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -73,9 +73,9 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CollegeCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    cell.addressLabel.text =  [NSString stringWithFormat:[[houseData objectForKey:@"address"] objectAtIndex:indexPath.row]];
-    cell.descLabel.text = [NSString stringWithFormat:[[houseData objectForKey:@"desc"] objectAtIndex:indexPath.row]];
-    [cell.image setImage:[[houseData objectForKey:@"pictures"] objectAtIndex:indexPath.row]];
+    cell.addressLabel.text =  [NSString stringWithFormat:[[houseData2 objectForKey:@"address"] objectAtIndex:indexPath.row]];
+    cell.descLabel.text = [NSString stringWithFormat:[[houseData2 objectForKey:@"desc"] objectAtIndex:indexPath.row]];
+    [cell.image setImage:[[houseData2 objectForKey:@"pictures"] objectAtIndex:indexPath.row]];
 
     return cell;
 }
@@ -88,7 +88,7 @@
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
     houseDetail *lvc = [storyboard instantiateViewControllerWithIdentifier:@"houseDetail"];
-    lvc.houseData = [[NSMutableArray alloc] initWithObjects:[NSString stringWithFormat:[[houseData objectForKey:@"address"] objectAtIndex:indexPath.row]],[NSString stringWithFormat:[[houseData objectForKey:@"pictures"] objectAtIndex:indexPath.row]],[[houseData objectForKey:@"desc"] objectAtIndex:indexPath.row],nil];
+    lvc.houseData = [[houseData2 objectForKey:@"secret"] objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:lvc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

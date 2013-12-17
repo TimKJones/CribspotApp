@@ -89,6 +89,7 @@
     NSMutableArray *addresses = [[NSMutableArray alloc] init];
     NSMutableArray *photos =[[NSMutableArray alloc] init];
     NSMutableArray *descriptions=[[NSMutableArray alloc] init];
+    NSMutableArray *secret = [[NSMutableArray alloc]init];
     int count =0;
     for (NSDictionary *boom in collegeInfo) {
         
@@ -125,6 +126,7 @@
                     
                     [descriptions addObject:bbstring];
                     [addresses addObject:address];
+                    [secret addObject:[NSNumber numberWithInt:markerid ]];
                     
                     if ([Image count]>=1) {
                         NSDictionary *imgdic = [Image objectAtIndex:0];
@@ -170,7 +172,7 @@
         
     }
     
-    view.houseData = [[NSDictionary alloc]initWithObjects:[NSArray arrayWithObjects:addresses,photos,descriptions, nil] forKeys:[NSArray arrayWithObjects:@"address",@"pictures",@"desc",nil]];
+    view.houseData2 = [[NSDictionary alloc]initWithObjects:[NSArray arrayWithObjects:addresses,photos,descriptions,secret, nil] forKeys:[NSArray arrayWithObjects:@"address",@"pictures",@"desc",@"secret",nil]];
     
     
     
