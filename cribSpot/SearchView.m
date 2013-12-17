@@ -79,8 +79,108 @@
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
     houseTable *view = [storyboard instantiateViewControllerWithIdentifier:@"searched_houses"];
-    view.houseData = [[NSDictionary alloc]initWithObjects:[NSArray arrayWithObjects:[NSArray arrayWithObjects:@"203 Koch Ave",@"Mary Markley Hall",@"727 E. Kingsley",@"Northwood 3", nil],[NSArray arrayWithObjects:@"203.png",@"mark.png",@"727.png",@"north.png", nil],[NSArray arrayWithObjects:@"This 6 Bedroom Beauty is a steal for $9250/month",@"\"Real Wolverines live in Mary Markley Hall\" - Mary Sue", @"Don't let the size of the place fool you.  This beige-walled biznatch makes those tenants go OYY YOY YOY!",@"If you like having friends, FORGET ABOUT IT. Literally the most antisocial place on Earth. Where friendships go to die. $26,000 per month.",nil], nil] forKeys:[NSArray arrayWithObjects:@"address",@"pictures",@"desc",nil]];
+    NSNumber *newid = [NSNumber numberWithInt:4986];
+    NSString *collegeURL = [NSString stringWithFormat:@"https://www.cribspot.com/Map/APIGetBasicData/0/%@?token=jg836djHjTk95Pxk69J6X4",newid];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:collegeURL]];
+    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSError *jsonParsingError = nil;
+    NSArray * collegeInfo=[NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:&jsonParsingError];
+    NSMutableArray *addresses = [[NSMutableArray alloc] init];
+    NSMutableArray *photos =[[NSMutableArray alloc] init];
+    NSMutableArray *descriptions=[[NSMutableArray alloc] init];
+    int count =0;
+    for (NSDictionary *boom in collegeInfo) {
+        
+        
+            
+            NSDictionary *Marker = [boom objectForKey:@"Marker"];
+            int markerid = [[Marker objectForKey:@"marker_id"] integerValue];
+    
+            NSDictionary *Rental = [boom objectForKey:@"Rental"];
+            NSString *address = [Marker objectForKey:@"street_address"];
+            NSNumber *rent = [Rental objectForKey:@"rent"];
+            NSString *beds = [Rental objectForKey:@"beds"];
+        
+        
+        if (![beds isEqual:[NSNull null]]&&[beds isEqual:[NSString stringWithFormat:@"%d",row]]) {
+            count ++;
+            //NSLog(address);
+            
+            NSString *markerURL = [NSString stringWithFormat:@"https://www.cribspot.com/Listings/APIGetListingsByMarkerId/%d?token=jg836djHjTk95Pxk69J6X4",markerid];
+            
+            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:markerURL]];
+            NSError *error;
+            NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
+            NSError *jsonParsingError = nil;
+            if (!error) {
+                NSArray * markerInfo=[NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:&jsonParsingError];
+                for (NSDictionary *boom in markerInfo){
+                    NSDictionary *Marker = [boom objectForKey:@"Marker"];
+                    NSDictionary *Rental = [boom objectForKey:@"Rental"];
+                    NSString *baths = [Rental objectForKey:@"baths"];
+                    NSArray *Image = [boom objectForKey:@"Image"];
+                    
+                    NSString* bbstring = [NSString stringWithFormat:@"%@ Beds and %@ Baths",beds,baths];
+                    
+                    [descriptions addObject:bbstring];
+                    [addresses addObject:address];
+                    
+                    if ([Image count]>=1) {
+                        NSDictionary *imgdic = [Image objectAtIndex:0];
+                        NSString *imgpath = [imgdic objectForKey:@"image_path"];
+                        NSString *newpath = [imgpath substringWithRange:NSMakeRange(13, [imgpath length]-13)];
+                        
+                        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat: @"https://s3-us-west-2.amazonaws.com/cribspot-img/listings/sml_%@",newpath]];
+                        NSData *data = [NSData dataWithContentsOfURL:url];
+                        UIImage *img = [UIImage imageWithData:data];
+                        [photos addObject:img];
+                        
+                    }else{
+                        [photos addObject:[UIImage imageNamed:@"nopic.jpg"]];
+                        
+                    }
+
+                    
+                    
+                    break;
+                    
+                }
+            }
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        }
+    
+        if (count>10) {
+            
+            break;
+        }
+    
+        
+    }
+    
+    view.houseData = [[NSDictionary alloc]initWithObjects:[NSArray arrayWithObjects:addresses,photos,descriptions, nil] forKeys:[NSArray arrayWithObjects:@"address",@"pictures",@"desc",nil]];
+    
+    
+    
     [self.navigationController pushViewController:view animated:YES];
+    
+    
+    
+    
+    
+    
     
    
 }

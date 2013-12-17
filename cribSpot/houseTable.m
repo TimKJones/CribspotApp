@@ -30,7 +30,7 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"Properties Near You";
+    self.navigationItem.title = @"Search Results";
     
     UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle: @"Back" style: UIBarButtonItemStyleBordered target: nil action: nil];
     
@@ -75,7 +75,7 @@
     }
     cell.addressLabel.text =  [NSString stringWithFormat:[[houseData objectForKey:@"address"] objectAtIndex:indexPath.row]];
     cell.descLabel.text = [NSString stringWithFormat:[[houseData objectForKey:@"desc"] objectAtIndex:indexPath.row]];
-    [cell.image setImage:[UIImage imageNamed:[NSString stringWithFormat:[[houseData objectForKey:@"pictures"] objectAtIndex:indexPath.row]]]];
+    [cell.image setImage:[[houseData objectForKey:@"pictures"] objectAtIndex:indexPath.row]];
 
     return cell;
 }
