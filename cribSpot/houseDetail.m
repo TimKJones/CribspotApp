@@ -12,7 +12,10 @@
 
 @end
 
-@implementation houseDetail
+@implementation houseDetail{
+    NSString *website;
+    NSString *email;
+}
 @synthesize houseData;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,6 +53,8 @@
             NSString *rent = [Rental objectForKey:@"rent"];
             NSString *baths = [Rental objectForKey:@"baths"];
             NSString *beds = [Rental objectForKey:@"beds"];
+            website = [Rental objectForKey:@"website"];
+            email = [Rental objectForKey:@"email"];
             
             NSArray *Image = [boom objectForKey:@"Image"];
             
@@ -64,7 +69,7 @@
             
             self.navigationItem.title = address;
             if (rent==[NSNull null]) {
-                rent =@"No Rent Info Available";
+                rent =@"No rent info available";
             }
             else{
                 rent = [NSString stringWithFormat:@"$%@/m",rent];
@@ -87,6 +92,18 @@
             }else{
                 [self.image setImage:[UIImage imageNamed:@"nopic.jpg"]];
             }
+            
+        
+            if (beds==[NSNull null]) {
+                self.bedbath.text =@"No bed/bath info available";
+            }
+            else{
+                self.bedbath.text = [NSString stringWithFormat:@"%@ Beds and %@ Baths",beds,baths];
+            }
+            
+            
+           
+            
             break;
             
         }
@@ -118,4 +135,11 @@
 
     }
     }
+- (IBAction)listingclick:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:website]];
+}
+- (IBAction)emailclick:(id)sender {
+    //GET EMAIL SENT HERE
+    
+}
 @end

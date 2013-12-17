@@ -92,6 +92,7 @@
             NSNumber *baths = [Rental objectForKey:@"baths"];
             NSNumber *beds = [Rental objectForKey:@"beds"];
             NSArray *Image = [boom objectForKey:@"Image"];
+ 
             if ([Image count]>=1) {
                 NSDictionary *imgdic = [Image objectAtIndex:0];
                 NSString *imgpath = [imgdic objectForKey:@"image_path"];
