@@ -14,9 +14,8 @@
 
 @end
 
-@implementation houseTable{
-    NSDictionary *houseData;
-}
+@implementation houseTable
+@synthesize houseData;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -32,10 +31,6 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"Properties Near You";
-    
-    
-    
-    houseData = [[NSDictionary alloc]initWithObjects:[NSArray arrayWithObjects:[NSArray arrayWithObjects:@"203 Koch Ave",@"Mary Markley Hall",@"727 E. Kingsley",@"Northwood 3", nil],[NSArray arrayWithObjects:@"203.png",@"mark.png",@"727.png",@"north.png", nil],[NSArray arrayWithObjects:@"This 6 Bedroom Beauty is a steal for $9250/month",@"\"Real Wolverines live in Mary Markley Hall\" - Mary Sue", @"Don't let the size of the place fool you.  This beige-walled biznatch makes those tenants go OYY YOY YOY!",@"If you like having friends, FORGET ABOUT IT. Literally the most antisocial place on Earth. Where friendships go to die. $26,000 per month.",nil], nil] forKeys:[NSArray arrayWithObjects:@"address",@"pictures",@"desc",nil]];
     
     UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle: @"Back" style: UIBarButtonItemStyleBordered target: nil action: nil];
     

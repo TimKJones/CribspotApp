@@ -199,7 +199,7 @@
     
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude
                                                             longitude:longitude
-                                                                 zoom:13];
+                                                                 zoom:14];
     GMSMapView *mapView_ = [GMSMapView mapWithFrame:[[UIScreen mainScreen] applicationFrame] camera:camera];
     mapView_.myLocationEnabled = YES;
     mapView_.settings.myLocationButton = YES;
@@ -265,6 +265,9 @@
     //add university ids
     int count =0;
     for (NSDictionary *test1 in collegeInfo) {
+        
+        if (count % 10 == 0){
+        
         NSDictionary *Marker = [test1 objectForKey:@"Marker"];
         NSDictionary *Listing = [test1 objectForKey:@"Listing"];
         NSDictionary *Sublet = [test1 objectForKey:@"Rental"];
@@ -289,14 +292,17 @@
         else{
             markerTest.icon = leasedimage;
         }
+            markerTest.map =mapView_;
         
-
-        
-        markerTest.map =mapView_;
-        
-        if (count++>200) {
-            break;
         }
+            if (count++>=2000) {
+                break;
+            }
+        
+        
+        
+        
+        
         
     }
     

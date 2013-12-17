@@ -10,4 +10,6 @@
 
 @interface houseTable : UITableViewController
 
+@property(nonatomic) NSDictionary *houseData;
+
 @end

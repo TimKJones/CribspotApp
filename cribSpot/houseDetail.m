@@ -185,8 +185,9 @@
 - (IBAction)callclick:(id)sender {
     
     if (![phone isEqual:[NSNull null]]) {
-        NSString *phoneNumber = [@"tel://" stringByAppendingString:phone];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumber]];
+        NSString *callstring = [NSString stringWithFormat:@"telprompt://%@",phone];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callstring]];
+
     }
 }
 @end
