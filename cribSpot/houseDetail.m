@@ -7,6 +7,8 @@
 //
 
 #import "houseDetail.h"
+#import <MessageUI/MessageUI.h>
+
 
 @interface houseDetail ()
 
@@ -15,6 +17,8 @@
 @implementation houseDetail{
     NSString *website;
     NSString *email;
+    NSString *phone;
+    NSString *address;
 }
 @synthesize houseData;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -49,12 +53,13 @@
             NSDictionary *Marker = [boom objectForKey:@"Marker"];
             NSDictionary *Rental = [boom objectForKey:@"Rental"];
             
-            NSString *address = [Marker objectForKey:@"street_address"];
+            address = [Marker objectForKey:@"street_address"];
             NSString *rent = [Rental objectForKey:@"rent"];
             NSString *baths = [Rental objectForKey:@"baths"];
             NSString *beds = [Rental objectForKey:@"beds"];
             website = [Rental objectForKey:@"website"];
-            email = [Rental objectForKey:@"email"];
+            email = [Rental objectForKey:@"contact_email"];
+            phone = [Rental objectForKey:@"contact_phone"];
             
             NSArray *Image = [boom objectForKey:@"Image"];
             
@@ -101,8 +106,8 @@
                 self.bedbath.text = [NSString stringWithFormat:@"%@ Beds and %@ Baths",beds,baths];
             }
             
-            
-           
+          
+        
             
             break;
             
@@ -140,6 +145,48 @@
 }
 - (IBAction)emailclick:(id)sender {
     //GET EMAIL SENT HERE
+    if (![email isEqual:[NSNull null]]) {
+        MFMailComposeViewController *mailcontroller = [[MFMailComposeViewController alloc] init];
+        [mailcontroller setMailComposeDelegate:self];
+        NSArray *emailArray = [[NSArray alloc] initWithObjects:email, nil];
+        [mailcontroller setToRecipients:emailArray];
+        [mailcontroller setSubject:[NSString stringWithFormat:@"%@ Inquiry",address]];
+        [self presentViewController:mailcontroller animated:YES completion:nil];
+    }
     
+}
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+
+
+- (IBAction)callclick:(id)sender {
+    
+    if (![phone isEqual:[NSNull null]]) {
+        NSString *phoneNumber = [@"tel://" stringByAppendingString:phone];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumber]];
+    }
 }
 @end

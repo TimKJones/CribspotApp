@@ -22,6 +22,8 @@
 - (IBAction)listingclick:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *email_button;
 - (IBAction)emailclick:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *call_button;
+- (IBAction)callclick:(id)sender;
 
 @end
 

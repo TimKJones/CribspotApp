@@ -351,6 +351,7 @@
 		8B8AA856185D12270007D5A0 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8B8AA855185D12270007D5A0 /* GoogleMaps.bundle */; };
 		8B8AA85A185D22340007D5A0 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8AA859185D22340007D5A0 /* GoogleMaps.framework */; };
 		8B8AA85C185D26430007D5A0 /* nopic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8B8AA85B185D26430007D5A0 /* nopic.jpg */; };
+		8B8AA8621860026A0007D5A0 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8AA8611860026A0007D5A0 /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -718,6 +719,7 @@
 		8B8AA855185D12270007D5A0 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "../../../../Downloads/GoogleMaps-iOS-1.6.0/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
 		8B8AA859185D22340007D5A0 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		8B8AA85B185D26430007D5A0 /* nopic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nopic.jpg; sourceTree = "<group>"; };
+		8B8AA8611860026A0007D5A0 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -725,6 +727,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B8AA8621860026A0007D5A0 /* MessageUI.framework in Frameworks */,
 				8B2AD354181EFA9800F96678 /* SystemConfiguration.framework in Frameworks */,
 				8B2AD352181EFA9200F96678 /* QuartzCore.framework in Frameworks */,
 				8B2AD350181EFA8C00F96678 /* OpenGLES.framework in Frameworks */,
@@ -780,6 +783,7 @@
 		8B2AD2F0181EF8D500F96678 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8B8AA8611860026A0007D5A0 /* MessageUI.framework */,
 				8B8AA859185D22340007D5A0 /* GoogleMaps.framework */,
 				8B8AA855185D12270007D5A0 /* GoogleMaps.bundle */,
 				8B2AD353181EFA9800F96678 /* SystemConfiguration.framework */,
