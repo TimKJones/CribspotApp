@@ -45,12 +45,18 @@
         NSNumber *ids = [boom objectForKey:@"id"];
         
         
-        
-        
+        UIImage *img = [UIImage alloc];
+        if ([imagename length]==0) {
+            img = [UIImage imageNamed:@"nopic.jpg"];
+        }
+        else{
         NSString *newpath = [imagename substringWithRange:NSMakeRange(1, [imagename length]-1)];
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat: @"https://s3-us-west-2.amazonaws.com/cribspot-%@", newpath]];
         NSData *data = [NSData dataWithContentsOfURL:url];
-        UIImage *img = [UIImage imageWithData:data];
+        img = [UIImage imageWithData:data];
+        }
+        
+        
         
         [idarray addObject:ids];
         [names addObject:name];
